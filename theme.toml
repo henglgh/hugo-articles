@@ -1,16 +1,16 @@
-name = 'article'
+name = 'articles'
 license = 'MIT'
-licenselink = 'https://github.com/henglgh/hugo-theme-article/LICENSE'
+licenselink = 'https://github.com/henglgh/hugo-articles/LICENSE'
 description = 'A Hugo theme for articles'
 
 # The home page of the theme, where the source can be found
-homepage = 'https://github.com/henglgh/hugo-theme-article'
+homepage = 'https://github.com/henglgh/hugo-articles'
 
 # If you have a running demo of the theme
-demosite = 'https://henglgh.github.io/hugo-theme-article'
+demosite = 'https://henglgh.github.io/hugo-articles'
 
 # Taxonomy terms
-tags = ['blog', 'article']
+tags = ['blog', 'articles']
 features = ['global search', 'white/dark theme', 'mobile adaptation']
 
 # If the theme has a single author

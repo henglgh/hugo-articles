@@ -1,4 +1,4 @@
-baseURL = 'https://henglgh.github.io/hugo-theme-article'
+baseURL = 'https://henglgh.github.io/hugo-articles'
 languageCode = 'en-us'
 timeZone = "Asia/Shanghai"
 title = "阿根"
@@ -10,19 +10,21 @@ copyright = "© 阿根"
     min = "0.116.0"
 
 [params]
-  mode="toggle"
-  useCDN=false
+  katex = true
+  mode = "toggle"
+  useCDN = false
   [[params.social]]
     name = "GitHub"
     icon = "github"
-    url = "https://github.com/henglgh/hugo-theme-article"
+    url = "https://github.com/henglgh/hugo-articles"
 
 [outputs]
   home = ["HTML", "JSON"]
 
 [menus]
   [[menu.main]]
-    name = "Archive"
+    #name = "Archive"
+    name = "tag"
     url = "/tags"
     weight = 1
 
@@ -40,3 +42,6 @@ copyright = "© 阿根"
 
 [pagination]
   disablePagination = true
+
+[taxonomies]
+  tag = 'tags'

@@ -437,7 +437,6 @@ img {
 /* 添加目录高亮样式 */
 #TableOfContents a.active {
   font-weight: bold;
-  font-size: medium;
   color: var(--maincolor);
 }
 

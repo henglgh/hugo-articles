@@ -10,7 +10,7 @@
 --codeblockDarkcolor: rgba(60, 62, 66, 0.4);
 --tablecolor: rgba(199, 37, 78, 0.4);
 --tableDarkcolor: rgba(171, 186, 191, 0.4);
---darkfontcolor: #abb2bf;
+--titleDarkColor: #d3d5d7;
 --mainArticleSize: 60%;
 --rightSideSize: 16%;
 --gMarginBottomSize: 8px;
@@ -18,10 +18,13 @@
 --scrollbarDarkColor: rgba(171, 186, 191, 0.2) #202124;
 --tagColor: rgba(102, 102, 102, 0.2);
 --tagDarkColor: rgba(171, 186, 191, 0.2);
+--fontColor: #232333;
+--fontDarkColor: #afafaf;
 }
 
 html {
-  color: #232333;
+  /* color: #232333; */
+  color: var(--fontColor);
   font-family: 'Roboto Mono';
   font-size: 15px;
   line-height: 1.4em;
@@ -43,6 +46,7 @@ body{
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbarColor);
   margin:unset;
+  word-break: break-all;
 }
 
 ::selection {
@@ -163,6 +167,7 @@ code {
 }
 
 pre {
+  /* color: #afafaf; */
   margin-bottom: var(--gMarginBottomSize);
   position: relative;
   line-height: 1.2;
@@ -220,7 +225,7 @@ img {
   margin-bottom: var(--gMarginBottomSize);
   height: 90vh;
   overflow-y: auto;
-  overflow-wrap:break-word;
+  /* overflow-wrap:break-word; */
   display: flex;
   gap: 20px;
   justify-content: center; /*水平居中*/
@@ -255,7 +260,7 @@ img {
   margin-top: 1em;
   margin-bottom: 2em;
   overflow-y: visible;
-  overflow-wrap:break-word;
+  /* overflow-wrap:break-word; */
   font-size: 1.2rem;
   font-weight: bold;
   display: flex;
@@ -497,20 +502,19 @@ img {
 
 /*------------------窗口适配----------------------*/
 @media (max-width: 1024px) {
+  :root {
+    --mainArticleSize: 90%;
+  }
   .commonRightSide {
     display: none !important;
   }
-
   .homeArticle .content-entry {
     display: block;
   }
-
   .homeArticle .content-time {
     display: none;
   }
-
   .headerMenu, .commonArticle {
-    width: 90%;
     margin-right: auto;
   }
   .listArticle time {
@@ -529,16 +533,17 @@ img {
 
 @media (min-width: 1025px) and (max-width: 1440px) {
   :root {
-    --mainArticleSize: 80%;
+    --mainArticleSize: 70%;
+    --rightSideSize: 22%;
   }
   .headerMenu a#tag {
     display: none;
   }
   .commonArticle {
-    margin-left: 100px;
+    margin-left: 50px;
   }
   .commonRightSide {
-    margin-right: 100px;
+    margin-right: 50px;
   }
 }
 

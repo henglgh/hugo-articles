@@ -116,9 +116,9 @@ ul {
   padding-left: 2ch;
   margin-bottom: var(--gMarginBottomSize);
 }
-ul li {
+/* ul li {
   text-indent: -2ch;
-}
+} */
 ul > li::before {
   content: '• ';
   font-weight: bold;
@@ -392,6 +392,11 @@ img {
 
 .homeArticle .placeholder {
   min-height: 80vh;
+}
+
+.homeRightSide .tags li {
+  display: flex;
+  align-items: center;
 }
 
 /*----------------专栏页配置----------------------*/

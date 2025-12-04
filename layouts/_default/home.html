@@ -24,7 +24,8 @@
           <ul class="tags">
             {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
             <li>
-              <a href="{{ "tags/" | absURL }}{{ $name | urlize }}"><i data-feather="tag"></i>{{ $name }}</a>({{ $taxonomy.Count }})
+              <i data-feather="tag"></i>
+              <a href="{{ "tags/" | absURL }}{{ $name | urlize }}">{{ $name }}({{ $taxonomy.Count }})</a>
             </li>
             {{ end }}
           </ul>

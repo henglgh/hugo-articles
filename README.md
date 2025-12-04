@@ -14,9 +14,6 @@
 ### 1.2.1. 主页
 ![主页](https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/home.png)
 
-### 1.2.2. 归档页
-![归档页](https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/list.png)
-
 ### 1.2.3. 归档列表页
 ![归档列表页](https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/archive.png)
 
@@ -25,10 +22,6 @@
 
 ### 1.2.5. 搜索页
 ![搜索页](https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/search.png)
-
-### 1.2.6. 移动端适配
-![手机](https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/moblie.png)
-
 
 ## 1.3. 安装
 clone自己的项目到本地并切换到项目的根目录，比如有一个blog项目：

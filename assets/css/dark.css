@@ -31,6 +31,28 @@ img {
   border-color: #282c34;
 }
 
+/* --------------------mermaid配置------------------- */
+.mermaid {
+  background-color: var(--codeblockDarkcolor);
+}
+
+/* .mermaid .nodes .node .label-container {
+  fill: var(--codeblockDarkcolor) !important;
+  stroke: var(--marmaidLineDarkColor) !important;
+}
+
+.mermaid .nodes .node .nodeLabel {
+  color: var(--fontDarkColor) !important;
+}
+
+.mermaid .edgePaths .flowchart-link {
+  stroke: var(--marmaidLineDarkColor) !important;
+}
+
+.mermaid .marker {
+  fill: var(--marmaidLineDarkColor) !important;
+} */
+
 /* --------------------分割线配置-------------------*/
 hr {
   border-top-color: #c678dd;

@@ -20,6 +20,8 @@
 --tagDarkColor: rgba(171, 186, 191, 0.2);
 --fontColor: #232333;
 --fontDarkColor: #afafaf;
+--mermaidLineColor: rebeccapurple;
+--marmaidLineDarkColor: #9370DB;
 }
 
 html {
@@ -219,6 +221,33 @@ img {
   border-color: var(--codeblockcolor);
   max-width: 100%;
 }
+
+/* --------------------mermaid配置------------------- */
+.mermaid {
+  border-radius: 4px;
+  background-color: var(--codeblockcolor);
+}
+
+.mermaid svg {
+  max-height: unset;
+  height: 60vh;
+  max-width: 100% !important;
+}
+
+/* .mermaid .nodes .node .label-container {
+  fill: var(--codeblockcolor) !important;
+  stroke: var(--mermaidLineColor) !important;
+  rx: 4px;
+  ry: 4px;
+}
+
+.mermaid .edgePaths .flowchart-link {
+  stroke: var(--mermaidLineColor) !important;
+}
+
+.mermaid .marker {
+  fill: var(--mermaidLineColor) !important;
+} */
 
 /* --------------------common配置    ------------ */
 .commonMain {

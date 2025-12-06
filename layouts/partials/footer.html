@@ -67,3 +67,15 @@ MathJax.Hub.Config({
 {{- if eq .Kind "page" -}}
 <script src="{{ absURL "js/toc-navigation.js" }}"></script>
 {{- end -}}
+
+<!-- Mermaid图表渲染 -->
+{{- if eq .Kind "page" -}}
+<script type="text/javascript" src="{{ absURL "js/mermaid.min.js" }}"></script>
+<script type="text/javascript" src="{{ absURL "js/mermaid-rendor.js" }}"></script>
+{{- end -}}
+
+<!-- SVG渲染 -->
+{{- if eq .Kind "page" -}}
+<script type="text/javascript" src="{{ absURL "js/svg-pan-zoom.min.js" }}"></script>
+<script type="text/javascript" src="{{ absURL "js/svg-rendor.js" }}"></script>
+{{- end -}}

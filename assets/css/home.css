@@ -1,0 +1,32 @@
+/*-----------------主页配置----------------------*/
+.homeArticle .content-entry {
+  /* margin-bottom: 0.25em; */
+  display: flex;
+  gap: 10px;
+}
+
+.homeArticle .content-time {
+  flex: 0 0 16%;
+}
+
+.homeArticle .content-title {
+  margin: unset;
+  flex: 0 1 26%;
+}
+
+.homeArticle .content-entry .description {
+  flex: 0 2 66%;
+}
+
+.homeArticle .content {
+  min-height: 10vh;
+}
+
+.homeArticle .placeholder {
+  min-height: 80vh;
+}
+
+.homeRightSide .tags li {
+  display: flex;
+  align-items: center;
+}

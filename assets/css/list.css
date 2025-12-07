@@ -1,0 +1,20 @@
+/*-------------------列表页配置---------------------- */
+.listRightSide {
+  top: 2.6rem;
+}
+
+.listRightSide .content {
+  display: none;
+}
+
+.listArticle .content a {
+  font-size: 1.1rem !important;
+}
+
+.listArticle .content {
+  min-height: 10vh;
+}
+
+.listArticle .placeholder {
+  min-height: 80vh;
+}

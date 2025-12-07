@@ -3,12 +3,12 @@ function setTheme(mode) {
     const iconElement = document.getElementById("theme-icon");
 
     if (mode === "dark") {
-        document.getElementById("darkModeStyle").disabled = false;
-        document.getElementById("codeDarkStyle").disabled = false;
+        document.getElementById("darkStyle").disabled = false;
+        document.getElementById("oneDarkStyle").disabled = false;
         iconElement.setAttribute("data-feather", "moon");
     } else if (mode === "light") {
-        document.getElementById("darkModeStyle").disabled = true;
-        document.getElementById("codeDarkStyle").disabled = true;
+        document.getElementById("darkStyle").disabled = true;
+        document.getElementById("oneDarkStyle").disabled = true;
         iconElement.setAttribute("data-feather", "sun");
     }
 

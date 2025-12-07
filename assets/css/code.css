@@ -1,0 +1,57 @@
+/*--------------------代码块配置---------------------*/
+.highlight {
+  position: relative;
+}
+
+code {
+  /* background-color: #ececec; */
+  background-color: var(--codeblockcolor);
+  color: #c7254e;
+  padding: .0em .2em;
+  font-family: 'Roboto Mono';
+  border-radius: 4px;
+}
+
+pre {
+  /* color: #afafaf; */
+  margin-bottom: var(--gMarginBottomSize);
+  position: relative;
+  line-height: 1.2;
+  padding: .5em;
+  border-radius: 4px;
+  overflow-x: auto;
+  /* scrollbar-width: thin;
+  scrollbar-color: rgba(102, 102, 102, 0.2) #ffffff; */
+  background-color: var(--codeblockcolor) !important;
+}
+
+pre code {
+  color: inherit;
+  font-size: 100%;
+  padding: 0;
+}
+
+/*--------------------复制按钮配置---------------------*/
+.copy-code-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #fff;
+  background: #666;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 10;
+}
+
+.highlight:hover .copy-code-btn {
+  opacity: 1;
+}
+
+.copy-code-btn.success {
+  background: #4caf50;
+}

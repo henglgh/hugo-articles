@@ -7,7 +7,7 @@
   {{- else -}}
   <title>{{ $title }}</title>
   {{- end -}}
-  <link rel="icon" type="image/png" href="{{ absURL "images/favicon.png" }}" />
+  <link id="favIcon" rel="icon" type="image/png" href="{{ absURL "images/favicon.png" }}" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
   <meta property="og:image" content="{{ .Site.Params.og_image }}"/>
@@ -18,26 +18,53 @@
   {{- template "_internal/opengraph.html" . -}}
   {{- template "_internal/twitter_cards.html" . -}}
 
-  {{ $fontstyle := resources.Get "css/fonts.css" | fingerprint }}
-  <link  rel="stylesheet" type="text/css" href="{{ $fontstyle.Permalink }}">
+  {{ $fontStyle := resources.Get "css/fonts.css" | fingerprint }}
+  <link id="fontStyle" rel="stylesheet" type="text/css" href="{{ $fontStyle.Permalink }}">
 
-  {{ $style := resources.Get "css/main.css" | fingerprint }}
-  <link rel="stylesheet" type="text/css" media="screen" href="{{ $style.Permalink }}" />
+  {{ $mainStyle := resources.Get "css/main.css" | fingerprint }}
+  <link id="mainStyle" rel="stylesheet" type="text/css" media="screen" href="{{ $mainStyle.Permalink }}" />
 
-  {{ $codestyle := resources.Get "css/mdxcode.css" | fingerprint }}
-  <link id="codeLightStyle" rel="stylesheet" type="text/css" href="{{ $codestyle.Permalink }}" {{ if eq .Site.Params.mode "auto" }}media="(prefers-color-scheme: light)"{{ end }} />
+  {{ $headerStyle := resources.Get "css/header.css" | fingerprint }}
+  <link id="headerStyle" rel="stylesheet" type="text/css" href="{{ $headerStyle.Permalink }}">
 
-  {{- if or (eq .Site.Params.mode "auto") (eq .Site.Params.mode "dark") (eq .Site.Params.mode "toggle") -}}
-  {{ $darkstyle := resources.Get "css/dark.css" | fingerprint }}
-  <link id="darkModeStyle" rel="stylesheet" type="text/css" href="{{ $darkstyle.Permalink }}" {{ if eq .Site.Params.mode "auto" }}media="(prefers-color-scheme: dark)"{{ end }} {{ if eq .Site.Params.mode "toggle" }}disabled{{ end }} />
+  {{ $footerStyle := resources.Get "css/footer.css" | fingerprint }}
+  <link id="footerStyle" rel="stylesheet" type="text/css" href="{{ $footerStyle.Permalink }}">
 
-  {{ $codestyle := resources.Get "css/mdonedark.css" | fingerprint }}
-  <link id="codeDarkStyle" rel="stylesheet" type="text/css" href="{{ $codestyle.Permalink }}" {{ if eq .Site.Params.mode "auto" }}media="(prefers-color-scheme: dark)"{{ end }} {{ if eq .Site.Params.mode "toggle" }}disabled{{ end }} />
-  {{ end }}
+  {{ $homeStyle := resources.Get "css/home.css" | fingerprint }}
+  <link id="homeStyle" rel="stylesheet" type="text/css" href="{{ $homeStyle.Permalink }}">
+
+  {{ $listStyle := resources.Get "css/list.css" | fingerprint }}
+  <link id="listStyle" rel="stylesheet" type="text/css" href="{{ $listStyle.Permalink }}">
+
+  {{ $termsStyle := resources.Get "css/terms.css" | fingerprint }}
+  <link id="termsStyle" rel="stylesheet" type="text/css" href="{{ $termsStyle.Permalink }}">
+
+  {{ $singleStyle := resources.Get "css/single.css" | fingerprint }}
+  <link id="singleStyle" rel="stylesheet" type="text/css" href="{{ $singleStyle.Permalink }}">
+
+  {{ $codeStyle := resources.Get "css/code.css" | fingerprint }}
+  <link id="codeStyle" rel="stylesheet" type="text/css" href="{{ $codeStyle.Permalink }}">
+
+  {{ $mermaidStyle := resources.Get "css/mermaid.css" | fingerprint }}
+  <link id="mermaidStyle" rel="stylesheet" type="text/css" href="{{ $mermaidStyle.Permalink }}">
+
+  {{ $oneLightStyle := resources.Get "css/onelight.css" | fingerprint }}
+  <link id="oneLightStyle" rel="stylesheet" type="text/css" href="{{ $oneLightStyle.Permalink }}" {{ if eq .Site.Params.mode "auto" }}media="(prefers-color-scheme: light)"{{ end }} />
 
   <!-- KaTeX support -->
   {{ with .Site.Params.katex }}
-  {{ $katexstyle := resources.Get "css/katex.min.css" | fingerprint }}
-  <link rel="stylesheet" type="text/css" href="{{ $katexstyle.Permalink }}"/>
+  {{ $katexStyle := resources.Get "css/katex.min.css" | fingerprint }}
+  <link id="katexStyle" rel="stylesheet" type="text/css" href="{{ $katexStyle.Permalink }}"/>
+  {{ end }}
+
+  {{ $screenStyle := resources.Get "css/screen.css" | fingerprint }}
+  <link id="screenStyle" rel="stylesheet" type="text/css" href="{{ $screenStyle.Permalink }}">
+
+  {{- if or (eq .Site.Params.mode "auto") (eq .Site.Params.mode "dark") (eq .Site.Params.mode "toggle") -}}
+  {{ $darkStyle := resources.Get "css/dark.css" | fingerprint }}
+  <link id="darkStyle" rel="stylesheet" type="text/css" href="{{ $darkStyle.Permalink }}" {{ if eq .Site.Params.mode "auto" }}media="(prefers-color-scheme: dark)"{{ end }} {{ if eq .Site.Params.mode "toggle" }}disabled{{ end }} />
+
+  {{ $oneDarkStyle := resources.Get "css/onedark.css" | fingerprint }}
+  <link id="oneDarkStyle" rel="stylesheet" type="text/css" href="{{ $oneDarkStyle.Permalink }}" {{ if eq .Site.Params.mode "auto" }}media="(prefers-color-scheme: dark)"{{ end }} {{ if eq .Site.Params.mode "toggle" }}disabled{{ end }} />
   {{ end }}
 </head>

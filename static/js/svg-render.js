@@ -1,26 +1,38 @@
+// 初始化svgPanZoom实例
+function initPanZoom(svgElement) {
+  return svgPanZoom(svgElement, {
+    zoomEnabled: true,        // 允许缩放
+    panEnabled: true,         // 允许平移
+    controlIconsEnabled: false, // 显示控制按钮（缩放/重置）
+    mouseWheelZoomEnabled: true,
+    dblClickZoomEnabled: false,
+    minZoom: 0.5,
+    maxZoom: 10,
+    fit: true,
+    center: true,
+    contain: true
+  });
+}
+
+// 重置svg缩放比例为1.0
+function resetZoomIfNeeded(panZoomInstance) {
+    const realZoom = panZoomInstance.getSizes().realZoom;
+    // 如果realZoom大于1.0，说明当前svg已经被放大了，需要将重置缩放比例为1.0
+    if(realZoom > 1.0) {
+        const newZoom = 1.0/realZoom;
+        panZoomInstance.zoom(newZoom);
+    }
+}
+
 // 等待 DOM 加载完成
 document.addEventListener("DOMContentLoaded", function() {
-  // 假设你只想选择由 Mermaid 渲染的 SVG
   var svgElements = document.querySelectorAll('.mermaid svg');
   svgElements.forEach(function(svg) {
-    // 在这里可以添加你的缩放逻辑
-    const panZoomInstance = svgPanZoom(svg, {
-      zoomEnabled: true,        // 允许缩放
-      panEnabled: true,         // 允许平移
-      controlIconsEnabled: false, // 显示控制按钮（缩放/重置）
-      mouseWheelZoomEnabled: true,
-      dblClickZoomEnabled: false,
-      minZoom: 0.5,
-      maxZoom: 10,
-      fit: false,
-      center: false
-    });
-    panZoomInstance.zoom(0.8);
-    panZoomInstance.center();
+    const panZoomInstance = initPanZoom(svg);
+    resetZoomIfNeeded(panZoomInstance);
     svg.addEventListener('dblclick', function(event) {
         panZoomInstance.reset();
-        panZoomInstance.zoom(0.8);
-        panZoomInstance.center();
+        resetZoomIfNeeded(panZoomInstance);
     });
   }); 
 });

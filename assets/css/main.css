@@ -111,9 +111,9 @@ a:hover {
 hr {
   border: 0;
   margin-bottom: var(--gMarginBottomSize);
-  border-top-style: dotted;
-  border-top-width: 4px;
-  border-top-color: var(--bordercl);
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: var(--maincolor);
 }
 
 /*----------------无序列表配置------------------- */

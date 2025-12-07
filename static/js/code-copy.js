@@ -7,6 +7,7 @@ preBlocks.forEach(function(preBlock) {
   const button = document.createElement('button');
   button.textContent = 'Copy';
   button.className = 'copy-code-btn';
+  button.type = 'button';
   
   // 3. 将按钮添加到<pre>元素附近
   preBlock.parentNode.insertBefore(button, preBlock);

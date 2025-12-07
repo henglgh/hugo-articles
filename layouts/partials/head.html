@@ -2,10 +2,10 @@
 	<div class="commonArticle headerMenu">
 		<nav class="headerMenuHome">
 			<!-- <a href="{{ absURL "" }}">Home</a> -->
-			<a href="{{ absURL "" }}" id="{{.Name}}"><i data-feather="home"></i></a>
+			<a href="{{ absURL "" }}" id="{{.Name}}" title="home"><i data-feather="home"></i></a>
 			{{ range .Site.Menus.main }}
 			<!-- <a href="{{ .URL }}">{{ .Name }}</a> -->
-			<a href="{{ .URL }}" id="{{.Name}}"><i data-feather="{{.Name}}"></i></a>
+			<a href="{{ .URL }}" id="{{.Name}}" title="{{ .Name }}"><i data-feather="{{.Name}}"></i></a>
 			{{ end }}
 		</nav>
 		<nav class="headerMenuSearch">
@@ -13,10 +13,10 @@
 		</nav>
 		<nav class="headerMenuOthers">
 			{{- range $index, $key := .Site.Params.Social -}}
- 			<a href="{{ $key.url }}"><i data-feather="{{ $key.icon }}"></i></a>
+ 			<a href="{{ $key.url }}" title="{{ $key.name }}"><i data-feather="{{ $key.icon }}"></i></a>
  			{{- end -}}
 			{{ if eq .Site.Params.mode "toggle" -}}
-			<a id="dark-mode-toggle" onclick="toggleTheme()" href="javascript:void(0);"><i id="theme-icon" data-feather="sun"></i></a>
+			<a id="dark-mode-toggle" title="sun" onclick="toggleTheme()" href="javascript:void(0);"><i id="theme-icon" data-feather="sun"></i></a>
 			{{ end }}
 		</nav>
 	</div>

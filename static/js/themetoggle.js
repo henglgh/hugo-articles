@@ -6,10 +6,12 @@ function setTheme(mode) {
         document.getElementById("darkStyle").disabled = false;
         document.getElementById("oneDarkStyle").disabled = false;
         iconElement.setAttribute("data-feather", "moon");
+        iconElement.parentNode.setAttribute("title", "moon");
     } else if (mode === "light") {
         document.getElementById("darkStyle").disabled = true;
         document.getElementById("oneDarkStyle").disabled = true;
         iconElement.setAttribute("data-feather", "sun");
+        iconElement.parentNode.setAttribute("title", "sun");
     }
 
     iconElement.setAttribute('stroke-width', '3');

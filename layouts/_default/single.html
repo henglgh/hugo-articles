@@ -12,6 +12,7 @@
     </section>
   </article>
   <aside class="commonRightSide singleRightSide">
+    <section class="tocContainer">
     {{ .TableOfContents }}
     {{ if .Params.tags }}
       <nav class="tags">
@@ -22,6 +23,7 @@
         </ul>
       </nav>
     {{ end }}
+    </section>
   </aside>
 </main>
 {{ end }}

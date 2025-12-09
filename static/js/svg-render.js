@@ -24,8 +24,7 @@ function resetZoomIfNeeded(panZoomInstance) {
     }
 }
 
-// 等待 DOM 加载完成
-document.addEventListener("DOMContentLoaded", function() {
+function svgRenderMain() {
   var svgElements = document.querySelectorAll('.mermaid svg');
   svgElements.forEach(function(svg) {
     const panZoomInstance = initPanZoom(svg);
@@ -34,5 +33,10 @@ document.addEventListener("DOMContentLoaded", function() {
         panZoomInstance.reset();
         resetZoomIfNeeded(panZoomInstance);
     });
-  }); 
+  });
+}
+
+// 等待 DOM 加载完成
+document.addEventListener("DOMContentLoaded", function() {
+  svgRenderMain();
 });

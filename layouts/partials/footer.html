@@ -5,23 +5,18 @@
   <div class="commonRightSide footerRightSide"></div>
 </footer>
 
+<!-- 矢量图加载 -->
+{{- if or (isset .Site.Params "social") (eq .Site.Params.mode "toggle") -}}
+<script src="{{ absURL "js/feather.min.js" }}"></script>
+<!-- <script>feather.replace()</script> -->
+{{- end -}}
+
+<!-- 代码复制功能 -->
 {{- if eq .Kind "page" -}}
 <script src="{{ absURL "js/code-copy.js" }}"></script>
 {{- end -}}
 
-{{- if or (isset .Site.Params "social") (eq .Site.Params.mode "toggle") -}}
-<script src="{{ absURL "js/feather.min.js" }}"></script>
-<script>feather.replace()</script>
-{{- end -}}
-
-{{- if eq .Site.Params.mode "toggle" -}}
-<script src="{{ absURL "js/themetoggle.js" }}"></script>
-<script>
-  document.getElementById('theme-icon').setAttribute('stroke-width', '3');
-</script>
-{{- end -}}
-
-<!-- Mathjax support -->
+<!-- Mathjax 支持 -->
 {{- if eq .Kind "page" -}}
 {{ with .Site.Params.mathjax }}
 <script type="text/javascript" src="{{ absURL "js/MathJax.js "}}"></script>
@@ -43,7 +38,7 @@ MathJax.Hub.Config({
 {{ end }}
 {{- end -}}
 
-<!-- KaTeX support -->
+<!-- KaTeX 支持 -->
 {{- if eq .Kind "page" -}}
 {{ with .Site.Params.katex }}
 <script defer src="{{ absURL "js/katex.min.js" }}"></script>
@@ -65,7 +60,7 @@ MathJax.Hub.Config({
 
 <!-- 导航栏跳转处理 -->
 {{- if eq .Kind "page" -}}
-<script src="{{ absURL "js/toc-navigation.js" }}"></script>
+<script src="{{ absURL "js/toc-render.js" }}"></script>
 {{- end -}}
 
 <!-- Mermaid图表渲染 -->
@@ -78,4 +73,9 @@ MathJax.Hub.Config({
 {{- if eq .Kind "page" -}}
 <script type="text/javascript" src="{{ absURL "js/svg-pan-zoom.min.js" }}"></script>
 <script type="text/javascript" src="{{ absURL "js/svg-render.js" }}"></script>
+{{- end -}}
+
+<!-- 主题切换功能 (必须放在最后)-->
+{{- if eq .Site.Params.mode "toggle" -}}
+<script src="{{ absURL "js/theme-render.js" }}"></script>
 {{- end -}}

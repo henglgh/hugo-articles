@@ -39,12 +39,16 @@ function restoreMermaidBlocks() {
   });
 }
 
-// 手动渲染所有 mermaid 代码块
-document.addEventListener('DOMContentLoaded', function() {
+function mermaidRenderMain() {
   // 初始化 Mermaid 配置
-  initMermaidConfig(savedTheme);
+  initMermaidConfig(localStorage.getItem("theme-storage"));
   // 替换 mermaid 代码块为渲染容器
   replaceMermaidBlocks();
   // 渲染所有 mermaid 容器
   mermaid.run();
+}
+
+// 手动渲染所有 mermaid 代码块
+document.addEventListener('DOMContentLoaded', function() {
+  mermaidRenderMain();
 });

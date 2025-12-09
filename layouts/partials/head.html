@@ -16,7 +16,7 @@
  			<a href="{{ $key.url }}" title="{{ $key.name }}"><i data-feather="{{ $key.icon }}"></i></a>
  			{{- end -}}
 			{{ if eq .Site.Params.mode "toggle" -}}
-			<a id="dark-mode-toggle" title="sun" onclick="toggleTheme()" href="javascript:void(0);"><i id="theme-icon" data-feather="sun"></i></a>
+			<a id="dark-mode-switch" title="sun" href="javascript:void(0);"><i id="theme-icon" data-feather="sun"></i></a>
 			{{ end }}
 		</nav>
 	</div>

@@ -6,7 +6,7 @@
 
 .mermaid svg {
   max-height: unset;
-  height: 60vh;
+  /* height: 60vh; */
   max-width: 100% !important;
 }
 

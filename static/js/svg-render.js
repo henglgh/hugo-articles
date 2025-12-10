@@ -24,9 +24,20 @@ function resetZoomIfNeeded(panZoomInstance) {
     }
 }
 
+// 调整svg高度，使其与内容高度一致
+function adjustSvgHeight(svgElement) {
+  // 获取svg内容的实际高度
+  const bbox = svgElement.getBBox();
+  const contentHeight = bbox.height;
+  // 调整svg高度，使其与内容高度一致
+  svgElement.setAttribute('height', contentHeight);
+}
+
 function svgRenderMain() {
   var svgElements = document.querySelectorAll('.mermaid svg');
   svgElements.forEach(function(svg) {
+    // 调整svg高度，使其与内容高度一致
+    adjustSvgHeight(svg);
     const panZoomInstance = initPanZoom(svg);
     resetZoomIfNeeded(panZoomInstance);
     svg.addEventListener('dblclick', function(event) {

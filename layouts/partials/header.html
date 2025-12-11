@@ -60,6 +60,12 @@
   {{ $screenStyle := resources.Get "css/screen.css" | fingerprint }}
   <link id="screenStyle" rel="stylesheet" type="text/css" href="{{ $screenStyle.Permalink }}">
 
+  <!-- Viewer support -->
+  {{- if eq .Kind "page" -}}
+  {{ $viewerStyle := resources.Get "css/viewer.min.css" | fingerprint }}
+  <link id="viewerStyle" rel="stylesheet" type="text/css" href="{{ $viewerStyle.Permalink }}">
+  {{- end -}}
+
   {{- if or (eq .Site.Params.mode "auto") (eq .Site.Params.mode "dark") (eq .Site.Params.mode "toggle") -}}
   {{ $darkStyle := resources.Get "css/dark.css" | fingerprint }}
   <link id="darkStyle" rel="stylesheet" type="text/css" href="{{ $darkStyle.Permalink }}" {{ if eq .Site.Params.mode "auto" }}media="(prefers-color-scheme: dark)"{{ end }} {{ if eq .Site.Params.mode "toggle" }}disabled{{ end }} />

@@ -75,6 +75,12 @@ MathJax.Hub.Config({
 <script type="text/javascript" src="{{ absURL "js/svg-render.js" }}"></script>
 {{- end -}}
 
+<!-- 图片渲染 -->
+{{- if eq .Kind "page" -}}
+<script type="text/javascript" src="{{ absURL "js/viewer.min.js" }}"></script>
+<script type="text/javascript" src="{{ absURL "js/image-viewer-render.js" }}"></script>
+{{- end -}}
+
 <!-- 主题切换功能 (必须放在最后)-->
 {{- if eq .Site.Params.mode "toggle" -}}
 <script src="{{ absURL "js/theme-render.js" }}"></script>

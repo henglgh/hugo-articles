@@ -155,6 +155,15 @@ table th {
 }
 
 /* --------------------图片配置------------------- */
+/* 图片样式 */
+img {
+  width: 100%;
+  height: auto;
+  max-height: 50vh;
+  object-fit: contain;
+  display: block;
+}
+
 .image-container {
   border-width: 1px;
   border-style: solid;
@@ -164,14 +173,6 @@ table th {
   max-width: 100%;
   max-height: 50vh;
   background-color: white;
-}
-
-/* 图片样式 */
-.image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
 }
 
 /* --------------------common配置    ------------ */

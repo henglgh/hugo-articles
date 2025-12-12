@@ -2,22 +2,31 @@
 function replacePWithDiv(img, index) {
   // 获取父级p标签
   const parentP = img.parentElement;
-  // 创建新的div
+  img.style.maxWidth = parentP.clientWidth + 'px';
+  // 记录img在parentP中的位置
+  const imgIndex = Array.from(parentP.childNodes).indexOf(img);
+
+  // 创建新的div容器
   const div = document.createElement('div');
-  // 复制p的所有属性和内容
-  div.innerHTML = parentP.innerHTML;
-  // 添加id
   div.id = 'image-container-' + index;
-  // 添加class
   div.className = 'image-container';
-  //获取img的naturalHeight 
-  const naturalHeight = img.naturalHeight;
   // 计算新的高度
-  const newHeight = naturalHeight > window.innerHeight * 0.5 ? window.innerHeight * 0.5 : naturalHeight;
+  const newHeight = img.clientHeight > window.innerHeight * 0.5 ? window.innerHeight * 0.5 : img.clientHeight;
   // 设置div的高度
   div.style.height = newHeight + 'px';
-  // 替换p为div
-  parentP.parentNode.replaceChild(div, parentP);
+
+  // 将img从parentP中移除并放入div
+  div.appendChild(img);
+
+  // 创建新的p标签存放img之后的兄弟节点
+  const newP = document.createElement('p');
+  const afterNodes = Array.from(parentP.childNodes).slice(imgIndex);
+  afterNodes.forEach(node => newP.appendChild(node));
+
+  // 将div插入到parentP之后
+  parentP.parentNode.insertBefore(div, parentP.nextSibling);
+  // 将新p标签插入到div之后
+  div.parentNode.insertBefore(newP, div.nextSibling);
 }
 
 // 初始化 Viewer
@@ -32,21 +41,11 @@ function viewerProcess(index) {
   });
 }
 
-function initImageStyle(img) {
-  // 设置img的宽度为100%
-  img.style.width = '100%';
-  img.style.height = '100%';
-  img.style.objectFit = 'contain';
-  img.style.display = 'block';
-}
-
 document.addEventListener('DOMContentLoaded', function() {
   // 选择所有的img标签
   const images = document.querySelectorAll('p > img');
   // 替换所有img标签的父级标签p
   images.forEach((img, index) => {
-    // 初始化图片样式
-    initImageStyle(img);
     // 替换p为div
     replacePWithDiv(img, index);
     // 初始化 Viewer

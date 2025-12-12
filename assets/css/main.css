@@ -162,16 +162,16 @@ table th {
   /* border-color: #ececec; */
   border-color: var(--codeblockcolor);
   max-width: 100%;
-  /* height: 50vh; */
+  max-height: 50vh;
   background-color: white;
 }
 
 /* 图片样式 */
 .image-container img {
-  width: 100%;    /* 自适应容器宽度 */
-  height: 100%;   /* 自适应容器高度 */
-  object-fit: contain; /* 关键属性：contain(完整显示) | cover(填充裁剪) | fill(拉伸填满) */
-  display: block; /* 消除图片底部间隙 */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 /* --------------------common配置    ------------ */

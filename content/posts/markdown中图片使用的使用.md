@@ -16,4 +16,6 @@ Markdown支持插入图片，语法为`![图片描述](图片URL)`。
 ![home](https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/home.png "主页")
 ```
 
-![home](https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/home.png "主页")
+例如：![home](https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/home.png "主页")
+
+图片前后都有文字时，在渲染过程中，把图片元素单独抽离出来，不与文字混在一起。

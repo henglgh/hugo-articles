@@ -83,6 +83,11 @@ h3, h4, h5 {
   font-size: 1.0rem;
 }
 
+/* ------------------标签图标配置------------------- */
+.feather-tag {
+  transform: scaleX(-1);
+}
+
 /*--------------------引用块配置--------------------- */
 blockquote {
   background: rgba(250, 235, 215, 0.4);
@@ -119,7 +124,7 @@ hr {
 /*----------------无序列表配置------------------- */
 ul {
   list-style: none;
-  padding-left: 2ch;
+  padding-left: 1ch;
   margin-bottom: var(--gMarginBottomSize);
 }
 /* ul li {

@@ -7,10 +7,6 @@
   display: none;
 }
 
-.listArticle .content a {
-  font-size: 1.1rem !important;
-}
-
 .listArticle .content {
   min-height: 10vh;
 }

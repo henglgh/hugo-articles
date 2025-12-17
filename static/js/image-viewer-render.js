@@ -1,3 +1,10 @@
+function setImgContainerHeight(img, div) {
+  // 计算新的高度
+  const newHeight = img.clientHeight > window.innerHeight * 0.5 ? window.innerHeight * 0.5 : img.clientHeight;
+  // 设置div的高度
+  div.style.height = newHeight + 'px';
+}
+
 // 替换p为div
 function replacePWithDiv(img, index) {
   // 获取父级p标签
@@ -10,10 +17,16 @@ function replacePWithDiv(img, index) {
   const div = document.createElement('div');
   div.id = 'image-container-' + index;
   div.className = 'image-container';
-  // 计算新的高度
-  const newHeight = img.clientHeight > window.innerHeight * 0.5 ? window.innerHeight * 0.5 : img.clientHeight;
+
   // 设置div的高度
-  div.style.height = newHeight + 'px';
+  if (img.complete && img.naturalHeight > 0) {
+    setImgContainerHeight(img, div);
+  } else {
+    // 图片未加载，添加加载事件监听
+    img.onload = function() {
+      setImgContainerHeight(img, div);
+    };
+  }
 
   // 将img从parentP中移除并放入div
   div.appendChild(img);

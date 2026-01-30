@@ -7,15 +7,27 @@
 
 .homeArticle .content-time {
   flex: 0 0 16%;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .homeArticle .content-title {
   margin: unset;
   flex: 0 1 26%;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .homeArticle .content-entry .description {
   flex: 0 2 66%;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .homeArticle .content {

@@ -127,12 +127,6 @@ pre {
   color: var(--fontDarkColor);
 }
 
-.singleRightSide .tags a {
-  color: var(--darkMaincolor);
-  background-color: var(--tagDarkColor);
-  border-bottom-color: var(--darkMaincolor);
-}
-
 #TableOfContents a.active {
   color: var(--darkMaincolor);
 }

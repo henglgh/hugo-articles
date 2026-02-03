@@ -14,15 +14,6 @@
   <aside class="commonRightSide singleRightSide">
     <section class="tocContainer">
     {{ .TableOfContents }}
-    {{ if .Params.tags }}
-      <nav class="tags">
-        <ul>
-          {{ range .Params.tags }}
-          <li><a href="{{ "tags/"| absURL }}{{ . | urlize }}">{{ . }}</a></li>
-          {{ end }}
-        </ul>
-      </nav>
-    {{ end }}
     </section>
   </aside>
 </main>

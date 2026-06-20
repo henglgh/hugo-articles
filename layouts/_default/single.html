@@ -3,7 +3,7 @@
   <article class="commonArticle singleArticle">
     <section class="titleSection">
       <h1 class="title">{{ .Title }}</h1>
-      <time>{{ dateFormat "2006-01-02 15:04:01" .Date }}</time>
+      <a href="{{ .Site.BaseURL }}" class="backToHome" title="返回主页">← 返回主页</a>
     </section>
     <section class="content">
       {{ .Content }}
@@ -17,4 +17,47 @@
     </section>
   </aside>
 </main>
+
+<button id="backToTopBtn" class="backToTopBtn" title="返回文章开头">↑</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const backToTopBtn = document.getElementById('backToTopBtn');
+  const titleSection = document.querySelector('.titleSection');
+  const scrollContainer = document.querySelector('.commonMain');
+  const tocContainer = document.querySelector('.singleRightSide');
+
+  if (backToTopBtn && titleSection && scrollContainer && tocContainer) {
+    function updateButtonPosition() {
+      const tocRect = tocContainer.getBoundingClientRect();
+      backToTopBtn.style.left = (tocRect.left + (tocRect.width / 2) - (backToTopBtn.offsetWidth / 2)) + 'px';
+      backToTopBtn.style.top = (tocRect.bottom + 10) + 'px';
+    }
+
+    function toggleBackToTopButton() {
+      const titleBottom = titleSection.offsetTop + titleSection.offsetHeight;
+      const scrollTop = scrollContainer.scrollTop;
+
+      if (scrollTop > titleBottom) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    }
+
+    backToTopBtn.addEventListener('click', function() {
+      scrollContainer.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    window.addEventListener('resize', updateButtonPosition);
+    scrollContainer.addEventListener('scroll', toggleBackToTopButton);
+
+    updateButtonPosition();
+    toggleBackToTopButton();
+  }
+});
+</script>
 {{ end }}

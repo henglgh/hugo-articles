@@ -1,4 +1,4 @@
-/* --------------------通用配置------------------- */
+/* --------------------通用配置（极简）------------------- */
 body {
   color: #afafaf;
   background-color: #202124;
@@ -15,20 +15,29 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--titleDarkColor);
 }
 
-/*--------------------引用块配置--------------------- */
+/*--------------------引用块配置（极简黑暗）--------------------- */
 blockquote {
-  background: rgba(250, 235, 215, 0.1);
-  color: var(--darkMaincolor);
-  border-left-color: var(--darkMaincolor);
+  background: rgba(224, 108, 117, 0.04);
+  color: #999;
+  border-left-color: rgba(224, 108, 117, 0.3);
+}
+
+blockquote::before {
+  display: none;
 }
 
 a:hover {
   border-bottom-color: var(--darkMaincolor);
 }
 
-/* --------------------图片配置------------------- */
+/* --------------------图片配置（极简黑暗）------------------- */
 img {
   border-color: #282c34;
+}
+
+.image-container {
+  border-color: #282c34;
+  box-shadow: none;
 }
 
 /* --------------------mermaid配置------------------- */
@@ -53,39 +62,197 @@ img {
   fill: var(--marmaidLineDarkColor) !important;
 } */
 
-/* --------------------分割线配置-------------------*/
+/* --------------------分割线配置（极简黑暗）-------------------*/
 hr {
   border-top-color: var(--darkMaincolor);
+  background: rgba(255, 255, 255, 0.06);
+  height: 1px;
 }
 
-/*--------------------表格配置---------------------*/
+/*--------------------表格配置（极简黑暗）---------------------*/
 table, table th, table td {
   /* border-color: #abb2bf; */
   border-color: var(--tableDarkcolor);
 }
 
 table th {
-  color: var(--darkMaincolor);
-  /* background-color: #3c3e42; */
-  background-color: var(--codeblockDarkcolor) !important;
+  color: var(--titleDarkColor);
+  background: rgba(255, 255, 255, 0.03) !important;
 }
 
-/* --------------------代码块配置------------------- */
+table tr:nth-child(even) {
+  background-color: transparent;
+}
+
+table tr:hover {
+  background: rgba(224, 108, 117, 0.04);
+}
+
+/* --------------------代码块配置（极简黑暗）------------------- */
 code {
   color: var(--darkMaincolor);
-  /* background-color: #3c3e42; */
-  background-color: var(--codeblockDarkcolor) !important;
+  background: rgba(224, 108, 117, 0.08);
+  border: none;
 }
 
 pre {
-  /* scrollbar-color: #abb2bf #202124; */
-  /* background-color: #3c3e42 !important; */
   scrollbar-color: rgba(171, 186, 191, 0.2) #202124;
-  background-color: var(--codeblockDarkcolor) !important;
+  background-color: #282c34 !important;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: none;
+}
+
+.highlight {
+  background: rgba(45, 47, 51, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.copy-code-btn {
+  background: var(--darkMaincolor);
+  box-shadow: none;
+}
+
+.copy-code-btn:hover {
+  background: #c7254e;
+  box-shadow: none;
 }
 
 .chroma {
   color: var(--fontDarkColor) !important;
+}
+
+/* --------------------单页配置（极简黑暗）------------------- */
+.singleArticle {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.singleArticle:hover {
+  box-shadow: none;
+}
+
+.singleArticle a {
+  color: #61afef;
+}
+
+.singleArticle a::after {
+  background: #61afef;
+}
+
+.singleArticle a:hover {
+  color: #528bff;
+}
+
+.singleArticle .titleSection {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.singleArticle .titleSection::after {
+  display: none;
+}
+
+.singleArticle .titleSection .backToHome {
+  color: #666;
+}
+
+.singleArticle .titleSection .title {
+  color: var(--titleDarkColor);
+}
+
+.singleArticle .titleSection .backToHome:hover {
+  color: var(--darkMaincolor);
+}
+
+.singleArticle .content {
+  color: var(--fontDarkColor);
+}
+
+.singleArticle .content h2 {
+  color: var(--titleDarkColor);
+  border-left: none;
+  background: transparent;
+  border-bottom-color: rgba(224, 108, 117, 0.15);
+}
+
+.singleArticle .content h3 {
+  color: #bbb;
+}
+
+.singleArticle .content p {
+  color: var(--fontDarkColor);
+}
+
+/* -------------------返回顶部按钮（黑暗模式）------------------- */
+.backToTopBtn {
+  background-color: rgba(224, 108, 117, 0.18);
+  color: var(--darkMaincolor);
+  box-shadow: 0 2px 8px rgba(224, 108, 117, 0.15);
+}
+
+.backToTopBtn:hover {
+  background-color: #e06c75;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(224, 108, 117, 0.4);
+}
+
+/* --------------------目录配置（极简黑暗）------------------- */
+.singleRightSide {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.singleRightSide:hover {
+  box-shadow: none;
+}
+
+.tocContainer {
+  scrollbar-color: var(--scrollbarDarkColor);
+}
+
+.tocContainer::-webkit-scrollbar-thumb {
+  background-color: rgba(171, 186, 191, 0.2);
+}
+
+.tocContainer li {
+  color: #777;
+}
+
+.tocContainer li:hover {
+  background: linear-gradient(90deg, rgba(224, 108, 117, 0.04), transparent);
+}
+
+.tocContainer a {
+  color: #777;
+}
+
+.tocContainer a::before {
+  background: #444;
+}
+
+.tocContainer a:hover {
+  color: var(--darkMaincolor);
+}
+
+.tocContainer a:hover::before {
+  background: var(--darkMaincolor);
+}
+
+#TableOfContents a.active,
+.tocContainer a.active {
+  color: var(--darkMaincolor);
+  background: transparent;
+}
+
+#TableOfContents a.active::before,
+.tocContainer a.active::before {
+  background: var(--darkMaincolor);
+  box-shadow: none;
+}
+
+.commonRightSide {
+  color: var(--fontDarkColor);
 }
 
 /* --------------------header配置------------------- */
@@ -117,18 +284,6 @@ pre {
 /* --------------------footer配置------------------- */
 .footerMenu {
   border-top-color: var(--darkMaincolor);
-}
-
-.singleArticle a {
-  color: #61afef;
-}
-
-.commonRightSide {
-  color: var(--fontDarkColor);
-}
-
-#TableOfContents a.active {
-  color: var(--darkMaincolor);
 }
 
 /* --------------------首页配置------------------- */

@@ -1,5 +1,5 @@
 /*------------------窗口适配----------------------*/
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   :root {
     --mainArticleSize: 90%;
   }
@@ -18,7 +18,7 @@
   .listArticle time {
     display: none;
   }
-}
+} */
 
 /* @media (min-width: 769px) and (max-width: 1024px) {
   :root {

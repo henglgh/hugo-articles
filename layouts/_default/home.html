@@ -2,34 +2,65 @@
 <html lang="{{ .Site.Language.Lang }}">
   {{ partial "header.html" . }}
   <body>
-    {{ partial "head.html" . }}
     <main class="commonMain homeMain">
       <article class="commonArticle homeArticle">
-        <section class="content">
-        {{ $pages := .Site.RegularPages }}
-        {{ $filteredPages := where $pages "Params.hidden" "ne" true }}
-        {{ range $filteredPages }}
-          <section class="content-entry">
-            <time class="content-time">{{ dateFormat "2006.01.02 15:04" .Date }}</time>
-            <h3 class="content-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-            {{ template "partials/pagedescription.html" . }}
-            <br>
-          </section>
-        {{ end }}
+        <section class="home-header">
+          <h1 class="site-title">{{ .Site.Title }}</h1>
+          <div class="site-icons">
+            <a href="{{ absURL "" }}" title="home"><i data-feather="home"></i></a>
+            {{- range $index, $key := .Site.Params.Social -}}
+            <a href="{{ $key.url }}" title="{{ $key.name }}"><i data-feather="{{ $key.icon }}"></i></a>
+            {{- end -}}
+            {{ if eq .Site.Params.mode "toggle" -}}
+            <a id="dark-mode-switch" title="sun" href="javascript:void(0);"><i id="theme-icon" data-feather="sun"></i></a>
+            {{ end }}
+          </div>
         </section>
-        <section class="placeholder"></section>
+
+        <section class="search-line-container">
+          <input type="text" class="search-line-input" placeholder="">
+          <i data-feather="search" class="search-icon"></i>
+        </section>
+
+        <section class="tabs-container">
+          <div class="tabs-wrapper">
+            <button class="tabs-nav-btn prev" id="tabsPrevBtn" title="向左滑动">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <div class="tabs-header" id="tabsHeader">
+            {{ $tags := .Site.Taxonomies.tags }}
+            {{ $firstTag := true }}
+            {{ range $name, $taxonomy := $tags }}
+            <button class="tab-btn{{ if $firstTag }} active{{ $firstTag = false }}{{ end }}" data-tag="{{ $name }}">{{ $name }}</button>
+            {{ end }}
+            </div>
+            <button class="tabs-nav-btn next" id="tabsNextBtn" title="向右滑动">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <div class="tabs-content">
+            <div class="search-no-results">没有找到匹配的文章</div>
+            {{ $firstTab := true }}
+            {{ range $tagName, $taxonomy := .Site.Taxonomies.tags }}
+            <div class="tab-pane{{ if $firstTab }} active{{ $firstTab = false }}{{ end }}" data-tab-content="{{ $tagName }}">
+              {{ $pages := where $taxonomy.Pages "Params.hidden" "ne" true }}
+              {{ range $pages }}
+              <section class="content-entry">
+                <span class="content-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span>
+                <time class="content-time">{{ dateFormat "2006年01月02日 15:04" .Date }}</time>
+              </section>
+              {{ end }}
+            </div>
+            {{ end }}
+          </div>
+        </section>
       </article>
       <aside class="commonRightSide homeRightSide">
-        <section class="content">
-          <ul class="tags">
-            {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-            <li>
-              <i data-feather="tag"></i>
-              <a href="{{ "tags/" | absURL }}{{ $name | urlize }}">{{ $name }}({{ $taxonomy.Count }})</a>
-            </li>
-            {{ end }}
-          </ul>
-       </section>
       </aside>
     </main>
     {{ partial "footer.html" . }}

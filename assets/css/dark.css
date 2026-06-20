@@ -130,3 +130,123 @@ pre {
 #TableOfContents a.active {
   color: var(--darkMaincolor);
 }
+
+/* --------------------首页配置------------------- */
+.home-header .site-title {
+  color: var(--titleDarkColor);
+}
+
+.site-icons a {
+  color: #888;
+  background: rgba(224, 108, 117, 0.08);
+}
+
+.site-icons a:hover {
+  color: var(--darkMaincolor);
+  background: rgba(224, 108, 117, 0.18);
+}
+
+.search-line-container {
+  border-bottom-color: #3c3e42;
+}
+
+.search-line-container:focus-within {
+  border-bottom-color: var(--darkMaincolor);
+}
+
+.search-line-input {
+  color: var(--titleDarkColor);
+}
+
+.search-line-input::placeholder {
+  color: #555;
+}
+
+.search-icon {
+  color: var(--darkMaincolor);
+}
+
+.tabs-nav-btn {
+  background: rgba(45, 47, 51, 0.9);
+  border: none;
+  color: var(--darkMaincolor);
+  box-shadow: none;
+}
+
+.tabs-nav-btn:hover {
+  background: rgba(224, 108, 117, 0.15);
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  box-shadow: none;
+}
+
+.tab-btn:hover {
+  background: rgba(224, 108, 117, 0.1);
+  border-color: transparent;
+  color: var(--darkMaincolor);
+  box-shadow: none;
+}
+
+.tab-btn.active {
+  background: var(--darkMaincolor);
+  border-color: transparent;
+  color: white;
+  box-shadow: none;
+}
+
+.tab-btn.active:hover {
+  box-shadow: none;
+}
+
+.homeArticle .content-entry {
+  border-bottom-color: rgba(255, 255, 255, 0.04);
+}
+
+.homeArticle .content-entry:hover {
+  background: linear-gradient(90deg, rgba(224, 108, 117, 0.06) 0%, transparent 100%);
+  border-left-color: var(--darkMaincolor);
+}
+
+.homeArticle .content-title a {
+  color: #d1d5db;
+}
+
+.homeArticle .content-title a:hover {
+  color: var(--darkMaincolor);
+}
+
+.homeArticle .content-time {
+  color: #6b7280;
+}
+
+.search-no-results {
+  color: #6b7280;
+}
+
+.pagination-controls {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.pagination-prev,
+.pagination-next {
+  background: transparent;
+  border-color: #3c3e42;
+  color: #9ca3af;
+}
+
+.pagination-prev:hover:not(:disabled),
+.pagination-next:hover:not(:disabled) {
+  background: var(--darkMaincolor);
+  color: white;
+  border-color: var(--darkMaincolor);
+}
+
+.pagination-info {
+  color: #6b7280;
+}

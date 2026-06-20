@@ -1,24 +1,28 @@
+{{- if not (eq .Kind "page") -}}
 <header class="headerMain">
 	<div class="commonArticle headerMenu">
+		{{ if not .IsHome }}
 		<nav class="headerMenuHome">
-			<!-- <a href="{{ absURL "" }}">Home</a> -->
 			<a href="{{ absURL "" }}" id="{{.Name}}" title="home"><i data-feather="home"></i></a>
 			{{ range .Site.Menus.main }}
-			<!-- <a href="{{ .URL }}">{{ .Name }}</a> -->
 			<a href="{{ .URL }}" id="{{.Name}}" title="{{ .Name }}"><i data-feather="{{.Name}}"></i></a>
 			{{ end }}
 		</nav>
+		{{ end }}
 		<nav class="headerMenuSearch">
 			{{ partial "search.html" . }}
 		</nav>
 		<nav class="headerMenuOthers">
+			{{ if not .IsHome }}
 			{{- range $index, $key := .Site.Params.Social -}}
  			<a href="{{ $key.url }}" title="{{ $key.name }}"><i data-feather="{{ $key.icon }}"></i></a>
  			{{- end -}}
 			{{ if eq .Site.Params.mode "toggle" -}}
 			<a id="dark-mode-switch" title="sun" href="javascript:void(0);"><i id="theme-icon" data-feather="sun"></i></a>
 			{{ end }}
+			{{ end }}
 		</nav>
 	</div>
 	<div class="commonRightSide headerRightSide"></div>
 </header>
+{{- end -}}

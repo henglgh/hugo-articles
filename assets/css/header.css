@@ -3,7 +3,6 @@
   margin-top: 1em;
   margin-bottom: 2em;
   overflow-y: visible;
-  /* overflow-wrap:break-word; */
   font-size: 1.2rem;
   font-weight: bold;
   display: flex;
@@ -13,6 +12,10 @@
   position: sticky;
   top: 1em;
   z-index: 20;
+}
+
+.homeMain .headerMain {
+  display: none;
 }
 
 .headerMenu {

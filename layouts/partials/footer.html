@@ -85,3 +85,9 @@ MathJax.Hub.Config({
 {{- if eq .Site.Params.mode "toggle" -}}
 <script src="{{ absURL "js/theme-render.js" }}"></script>
 {{- end -}}
+
+<!-- 首页标签功能 -->
+{{- if .IsHome -}}
+<script src="{{ absURL "js/tabs.js" }}"></script>
+<script src="{{ absURL "js/home-search.js" }}"></script>
+{{- end -}}

@@ -542,3 +542,52 @@
   display: flex;
   align-items: center;
 }
+
+/* -------------------主页响应式优化---------------------- */
+@media (max-width: 1024px) {
+  .homeRightSide {
+    display: none !important;
+  }
+
+  .homeMain .commonArticle {
+    width: 85%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .site-title {
+    font-size: 2rem;
+  }
+
+  .home-header {
+    padding: 2em 0 1.2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .homeMain .commonArticle {
+    width: 92%;
+    max-width: none;
+  }
+
+  .site-title {
+    font-size: 1.8rem;
+  }
+
+  .home-header {
+    padding: 1.5em 0 1em;
+  }
+
+  .site-icons {
+    gap: 12px;
+  }
+
+  .homeArticle .content-time {
+    display: none;
+  }
+
+  .homeArticle .content-title {
+    max-width: 100%;
+  }
+}

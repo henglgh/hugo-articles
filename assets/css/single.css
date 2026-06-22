@@ -343,8 +343,14 @@
   }
 
   .singleRightSide {
-    padding: 0;
-    padding-top: 2.2em;
+    display: none !important;
+  }
+
+  .singleMain .commonArticle {
+    width: 85%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -365,6 +371,11 @@
   .singleArticle .content h2 {
     font-size: 1.15rem;
     padding-left: 0;
+  }
+
+  .singleMain .commonArticle {
+    width: 92%;
+    max-width: none;
   }
 }
 

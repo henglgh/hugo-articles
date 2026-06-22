@@ -25,13 +25,18 @@ document.addEventListener('DOMContentLoaded', function() {
   const backToTopBtn = document.getElementById('backToTopBtn');
   const titleSection = document.querySelector('.titleSection');
   const scrollContainer = document.querySelector('.commonMain');
-  const tocContainer = document.querySelector('.singleRightSide');
 
-  if (backToTopBtn && titleSection && scrollContainer && tocContainer) {
+  if (backToTopBtn && titleSection && scrollContainer) {
     function updateButtonPosition() {
-      const tocRect = tocContainer.getBoundingClientRect();
-      // 按钮与 TOC 左侧对齐
-      backToTopBtn.style.left = tocRect.left + 'px';
+      const tocContainer = document.querySelector('.singleRightSide');
+      if (tocContainer && window.innerWidth > 1024) {
+        const tocRect = tocContainer.getBoundingClientRect();
+        backToTopBtn.style.left = tocRect.left + 'px';
+        backToTopBtn.style.right = 'auto';
+      } else {
+        backToTopBtn.style.left = 'auto';
+        backToTopBtn.style.right = '1.5em';
+      }
     }
 
     function toggleBackToTopButton() {

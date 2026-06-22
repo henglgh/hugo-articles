@@ -70,14 +70,40 @@ hr {
 }
 
 /*--------------------表格配置（极简黑暗）---------------------*/
-table, table th, table td {
-  /* border-color: #abb2bf; */
-  border-color: var(--tableDarkcolor);
+table {
+  margin-bottom: 0.8em;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(40, 44, 52, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+table th, table td {
+  padding: 6px 10px;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid var(--tableDarkcolor);
+}
+
+table tr:last-child td {
+  border-bottom: none;
 }
 
 table th {
   color: var(--titleDarkColor);
-  background: rgba(255, 255, 255, 0.03) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  font-weight: 500;
+  text-transform: none;
+  font-size: 14px;
+  letter-spacing: 0;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 table tr:nth-child(even) {
@@ -85,7 +111,7 @@ table tr:nth-child(even) {
 }
 
 table tr:hover {
-  background: rgba(224, 108, 117, 0.04);
+  background: rgba(224, 108, 117, 0.06);
 }
 
 /* --------------------代码块配置（极简黑暗）------------------- */
@@ -97,14 +123,24 @@ code {
 
 pre {
   scrollbar-color: rgba(171, 186, 191, 0.2) #202124;
-  background-color: #282c34 !important;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background-color: transparent !important;
   box-shadow: none;
+  border: none;
+}
+
+pre code {
+  color: #d3d5d7 !important;
 }
 
 .highlight {
-  background: rgba(45, 47, 51, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(40, 44, 52, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .copy-code-btn {
@@ -118,8 +154,28 @@ pre {
 }
 
 .chroma {
-  color: var(--fontDarkColor) !important;
+  color: #d3d5d7 !important;
+  background-color: transparent !important;
 }
+
+/* 暗主题下优化语法高亮颜色亮度 */
+.chroma .k { color: #c678dd !important; }
+.chroma .kc { color: #e5c07b !important; }
+.chroma .kd { color: #c678dd !important; }
+.chroma .kn { color: #c678dd !important; }
+.chroma .kp { color: #c678dd !important; }
+.chroma .kr { color: #c678dd !important; }
+.chroma .kt { color: #e5c07b !important; }
+.chroma .n { color: #e06c75 !important; }
+.chroma .na { color: #e06c75 !important; }
+.chroma .nb { color: #e5c07b !important; }
+.chroma .nc { color: #e5c07b !important; }
+.chroma .no { color: #e06c75 !important; }
+.chroma .nf { color: #61afef !important; }
+.chroma .s { color: #98c379 !important; }
+.chroma .m { color: #d19a66 !important; }
+.chroma .o { color: #56b6c2 !important; }
+.chroma .c { color: #7f848e !important; }
 
 /* --------------------单页配置（极简黑暗）------------------- */
 .singleArticle {
@@ -208,15 +264,20 @@ pre {
 }
 
 .tocContainer {
-  scrollbar-color: var(--scrollbarDarkColor);
+  scrollbar-color: rgba(171, 186, 191, 0.2) transparent;
+}
+
+.tocContainer::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .tocContainer::-webkit-scrollbar-thumb {
   background-color: rgba(171, 186, 191, 0.2);
+  border-radius: 2px;
 }
 
 .tocContainer li {
-  color: #777;
+  color: #aaa;
 }
 
 .tocContainer li:hover {
@@ -224,31 +285,19 @@ pre {
 }
 
 .tocContainer a {
-  color: #777;
-}
-
-.tocContainer a::before {
-  background: #444;
+  color: #aaa;
+  background: transparent;
 }
 
 .tocContainer a:hover {
   color: var(--darkMaincolor);
-}
-
-.tocContainer a:hover::before {
-  background: var(--darkMaincolor);
+  background: transparent;
 }
 
 #TableOfContents a.active,
 .tocContainer a.active {
   color: var(--darkMaincolor);
   background: transparent;
-}
-
-#TableOfContents a.active::before,
-.tocContainer a.active::before {
-  background: var(--darkMaincolor);
-  box-shadow: none;
 }
 
 .commonRightSide {
@@ -322,45 +371,100 @@ pre {
 }
 
 .tabs-nav-btn {
-  background: rgba(45, 47, 51, 0.9);
-  border: none;
+  background: rgba(40, 44, 52, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--darkMaincolor);
   box-shadow: none;
 }
 
 .tabs-nav-btn:hover {
   background: rgba(224, 108, 117, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: none;
   border-color: transparent;
 }
 
 .tab-btn {
-  background: transparent;
-  border: none;
+  background: rgba(40, 44, 52, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: #9ca3af;
   box-shadow: none;
+  animation: fadeInTabDark 0.3s ease-out forwards;
+  opacity: 0;
+}
+
+.tab-btn:nth-child(1) { animation-delay: 0.05s; }
+.tab-btn:nth-child(2) { animation-delay: 0.10s; }
+.tab-btn:nth-child(3) { animation-delay: 0.15s; }
+.tab-btn:nth-child(4) { animation-delay: 0.20s; }
+.tab-btn:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes fadeInTabDark {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .tab-btn:hover {
-  background: rgba(224, 108, 117, 0.1);
-  border-color: transparent;
+  background: rgba(224, 108, 117, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-color: rgba(255, 255, 255, 0.12);
   color: var(--darkMaincolor);
   box-shadow: none;
+  transform: translateY(-1px);
 }
 
 .tab-btn.active {
   background: var(--darkMaincolor);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-color: transparent;
   color: white;
   box-shadow: none;
 }
 
 .tab-btn.active:hover {
+  background: var(--darkMaincolor);
   box-shadow: none;
 }
 
 .homeArticle .content-entry {
   border-bottom-color: rgba(255, 255, 255, 0.04);
+  animation: fadeInItemDark 0.3s ease-out forwards;
+  opacity: 0;
+}
+
+.homeArticle .content-entry:nth-child(1) { animation-delay: 0.05s; }
+.homeArticle .content-entry:nth-child(2) { animation-delay: 0.10s; }
+.homeArticle .content-entry:nth-child(3) { animation-delay: 0.15s; }
+.homeArticle .content-entry:nth-child(4) { animation-delay: 0.20s; }
+.homeArticle .content-entry:nth-child(5) { animation-delay: 0.25s; }
+.homeArticle .content-entry:nth-child(6) { animation-delay: 0.30s; }
+.homeArticle .content-entry:nth-child(7) { animation-delay: 0.35s; }
+.homeArticle .content-entry:nth-child(8) { animation-delay: 0.40s; }
+.homeArticle .content-entry:nth-child(9) { animation-delay: 0.45s; }
+.homeArticle .content-entry:nth-child(10) { animation-delay: 0.50s; }
+
+@keyframes fadeInItemDark {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .homeArticle .content-entry:hover {

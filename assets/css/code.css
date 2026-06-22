@@ -1,11 +1,13 @@
 /*--------------------代码块配置（极简风格）---------------------*/
 .highlight {
   position: relative;
-  border-radius: 0;
+  border-radius: 8px;
   overflow: hidden;
-  background: #f8f8f8;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: none;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 code {
@@ -25,15 +27,15 @@ code:hover {
 }
 
 pre {
-  margin-bottom: 0.8em;
+  margin-bottom: 0;
   position: relative;
   line-height: 1.45;
   padding: 0.8em;
   border-radius: 0;
   overflow-x: auto;
-  background-color: #f8f8f8 !important;
+  background-color: transparent !important;
   box-shadow: none;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: none;
 }
 
 pre code {

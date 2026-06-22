@@ -12,46 +12,78 @@ function removeAllActive(tocItems) {
   tocItems.forEach(item => item.classList.remove('active'));
 }
 
-// 高亮对应目录项
-function highlightTocItem (sectionId, tocItems) {
+// 收缩所有目录项
+function collapseAllToc() {
+  const allNestedUls = document.querySelectorAll('#TableOfContents ul ul');
+  allNestedUls.forEach(ul => {
+    ul.style.display = 'none';
+  });
+
+  const allLis = document.querySelectorAll('#TableOfContents li');
+  allLis.forEach(li => li.classList.remove('expanded'));
+}
+
+// 展开指定项的所有父级
+function expandToItem(tocLink) {
+  if (!tocLink) return;
+
+  // 从当前链接向上查找所有父级 li
+  let current = tocLink.parentElement;
+  while (current) {
+    if (current.tagName === 'LI') {
+      current.classList.add('expanded');
+      // 找到这个 li 的子 ul 并显示
+      const childUl = current.querySelector(':scope > ul');
+      if (childUl) {
+        childUl.style.display = 'block';
+      }
+    }
+    current = current.parentElement;
+  }
+}
+
+// 高亮对应目录项并自动展开
+function highlightTocItem(sectionId, tocItems) {
+  // 只移除高亮，不收缩
   removeAllActive(tocItems);
-  const activeTocItem = document.querySelector(`#TableOfContents a[href="#${sectionId}"]`);
-  if (activeTocItem) {
-    activeTocItem.classList.add('active');
-    // 自动滚动tocContainer使高亮项可见
-    // 使用 behavior: 'auto' 避免触发滚动事件导致无限循环
+
+  const activeLink = document.querySelector(`#TableOfContents a[href="#${sectionId}"]`);
+  
+  if (activeLink) {
+    activeLink.classList.add('active');
+    
+    // 自动展开到当前高亮的项
+    expandToItem(activeLink);
+
+    // 自动滚动使高亮项可见
     const tocContainer = document.querySelector('.tocContainer');
     if (tocContainer) {
-      activeTocItem.scrollIntoView({ block: 'nearest', behavior: 'auto' });
+      activeLink.scrollIntoView({ block: 'nearest', behavior: 'auto' });
     }
   }
 }
 
-// 交叉观察器处理
+// 交叉观察器处理（只用于高亮，不控制展开/收缩）
 function observerProcess(sections, tocItems) {
   const updateActiveToc = debounce(() => {
-    // 找到视口顶部最接近的可见标题
     let topSection = null;
     let minOffset = Infinity;
 
     sections.forEach(section => {
       const rect = section.getBoundingClientRect();
-      // 选择在视口内或上方的标题，取离视口顶部最近的那个
+      
       if (rect.top <= 80) {
-        // heading 在视口顶部附近或上方
-        const offset = rect.top >= 0 ? rect.top : -rect.top; // 正面在视口内，负面上方
+        const offset = rect.top >= 0 ? rect.top : -rect.top;
         if (offset < minOffset) {
           minOffset = offset;
           topSection = section;
         }
       } else if (!topSection && rect.top > 0 && rect.top < minOffset) {
-        // 没有找到视口上方的，找最上面的那个在视口内的
         minOffset = rect.top;
         topSection = section;
       }
     });
 
-    // 如果没找到，用第一个可见的 heading
     if (!topSection && sections.length > 0) {
       topSection = sections[0];
     }
@@ -73,41 +105,102 @@ function observerProcess(sections, tocItems) {
     observer.observe(section);
   });
 
-  // 监听文章滚动，手动检查当前可见标题
   const scrollContainer = document.querySelector('.singleMain');
   if (scrollContainer) {
     scrollContainer.addEventListener('scroll', updateActiveToc, { passive: true });
   }
 }
 
+// 切换目录项的展开/收缩状态
+function toggleTocItem(tocLink) {
+  if (!tocLink) return;
 
-// 目录项点击跳转
+  const parentLi = tocLink.parentElement;
+  if (!parentLi || parentLi.tagName !== 'LI') return;
+
+  // 检查是否有子级 ul
+  const childUl = parentLi.querySelector(':scope > ul');
+  if (!childUl) {
+    // 没有子级，执行正常的跳转逻辑
+    return false;
+  }
+
+  // 有子级，切换展开/收缩状态
+  if (parentLi.classList.contains('expanded')) {
+    // 当前是展开的，执行收缩
+    parentLi.classList.remove('expanded');
+    parentLi.classList.add('collapsing');
+    
+    // 添加收缩动画
+    childUl.style.animation = 'slideUp 0.3s ease forwards';
+    
+    // 动画结束后隐藏元素
+    setTimeout(() => {
+      childUl.style.display = 'none';
+      parentLi.classList.remove('collapsing');
+    }, 300);
+    
+    return true; // 表示已处理，阻止默认行为
+  } else {
+    // 当前是收缩的，执行展开
+    parentLi.classList.add('expanded');
+    childUl.style.display = 'block';
+    
+    // 添加展开动画效果
+    childUl.style.animation = 'none';
+    childUl.offsetHeight; // 触发重排
+    childUl.style.animation = 'slideDown 0.3s ease';
+    
+    return true; // 表示已处理，阻止默认行为
+  }
+}
+
+// 目录项点击处理（支持展开/收缩 + 跳转）
 function tocJump(tocItems) {
   tocItems.forEach(item => {
     item.addEventListener('click', (e) => {
+      // 先尝试切换展开/收缩
+      const isToggled = toggleTocItem(item);
+      
+      if (isToggled) {
+        // 如果是展开/收缩操作，阻止默认跳转
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      
+      // 否则执行正常的跳转逻辑
       e.preventDefault();
       const targetId = item.getAttribute('href').substring(1);
       const targetSection = document.getElementById(targetId);
 
-      // 获取滚动容器
       const scrollContainer = document.querySelector('.singleMain');
-      // 平滑滚动到对应章节
-      scrollContainer.scrollTo({
-        behavior: 'smooth',
-        top: targetSection.offsetTop - 80
-      });
+      if (scrollContainer && targetSection) {
+        scrollContainer.scrollTo({
+          behavior: 'smooth',
+          top: targetSection.offsetTop - 80
+        });
+        
+        // 跳转后高亮并展开到目标项
+        setTimeout(() => {
+          highlightTocItem(targetId, tocItems);
+        }, 300);
+      }
     });
   });
 }
 
-// 初始化：页面加载时高亮第一个章节
+// 初始化：页面加载时高亮第一个章节并自动展开
 function initActiveToc(tocItems) {
   removeAllActive(tocItems);
+  // 高亮并展开第一个章节
   if (tocItems.length > 0) {
     tocItems[0].classList.add('active');
+    expandToItem(tocItems[0]);
   }
 }
 
+// 主函数
 function tocRenderMain(){
   // 获取目录链接
   const tocItems = document.querySelectorAll('#TableOfContents a');
@@ -120,12 +213,17 @@ function tocRenderMain(){
     '.singleArticle .content h4, ' +
     '.singleArticle .content h5'
   );
-  // 初始化：页面加载时高亮第一个章节
+  
+  // 初始化：页面加载时高亮第一个章节并自动展开
   initActiveToc(tocItems);
-  // 处理交叉观察器
+  
+  // 处理交叉观察器（高亮当前章节 + 自动展开）
   observerProcess(sections, tocItems);
-  // 处理点击跳转
+  
+  // 处理点击跳转和手动展开/收缩
   tocJump(tocItems);
+  
+  console.log('[TOC] 目录初始化完成（支持滚动自动展开），共', tocItems.length, '个目录项,', sections.length, '个章节');
 }
 
 document.addEventListener('DOMContentLoaded', function() {

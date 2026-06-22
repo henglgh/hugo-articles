@@ -144,10 +144,10 @@
 }
 
 .tocContainer {
-  max-height: 80vh;
+  max-height: 76vh;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--scrollbarColor);
+  scrollbar-color: rgba(102, 102, 102, 0.3) transparent;
   padding-right: 4px;
 }
 
@@ -169,6 +169,52 @@
   padding: 0;
 }
 
+/* 嵌套列表默认显示（用户手动控制展开/收缩） */
+.tocContainer ul ul {
+  display: block;
+  padding-left: 16px; /* 子级目录缩进 */
+}
+
+/* 收缩状态 */
+.tocContainer li:not(.expanded) > ul {
+  display: none;
+}
+
+.tocContainer li.expanded > ul {
+  display: block;
+  animation: slideDown 0.3s ease;
+}
+
+.tocContainer li.collapsing > ul {
+  animation: slideUp 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 500px;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 500px;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+    max-height: 0;
+  }
+}
+
 .tocContainer li {
   font-size: 12px;
   line-height: 1.4;
@@ -184,6 +230,24 @@
   position: relative;
 }
 
+/* 有子级的项显示箭头指示器（确保 ul 中有实际的 li 子元素） */
+.tocContainer li:has(> ul > li) > a:first-child::before {
+  content: '▸';
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: #999;
+}
+
+/* 展开状态的箭头旋转 */
+.tocContainer li.expanded:has(> ul > li) > a:first-child::before {
+  content: '▾';
+  color: var(--maincolor);
+}
+
 .tocContainer li::before{
   content: none;
 }
@@ -194,34 +258,22 @@
 }
 
 .tocContainer a {
-  color: #999;
+  color: #555;
   text-decoration: none;
   display: block;
   transition: color 0.15s ease;
   position: relative;
-  padding-left: 10px;
-}
-
-.tocContainer a::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: #ddd;
-  transition: all 0.15s ease;
+  padding-left: 18px;
+  background: transparent;
 }
 
 .tocContainer a:hover {
   color: var(--maincolor);
+  background: transparent;
 }
 
 .tocContainer a:hover::before {
-  background: var(--maincolor);
-  transform: translateY(-50%) scale(1.2);
+  background: transparent;
 }
 
 .tocContainer a.active {
@@ -232,14 +284,14 @@
 }
 
 .tocContainer a.active::before {
-  background: var(--maincolor);
-  transform: translateY(-50%) scale(1.2);
+  background: transparent;
   box-shadow: none;
 }
 
 /* -------------------返回顶部按钮配置---------------------- */
 .backToTopBtn {
   position: fixed;
+  bottom: 10vh;
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -321,6 +373,7 @@
   .backToTopBtn {
     bottom: 1.5em;
     right: 1.5em;
+    left: auto !important;
     width: 36px;
     height: 36px;
     font-size: 16px;
@@ -331,6 +384,7 @@
   .backToTopBtn {
     bottom: 1em;
     right: 1em;
+    left: auto !important;
     width: 32px;
     height: 32px;
     font-size: 14px;

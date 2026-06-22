@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
   if (backToTopBtn && titleSection && scrollContainer && tocContainer) {
     function updateButtonPosition() {
       const tocRect = tocContainer.getBoundingClientRect();
-      backToTopBtn.style.left = (tocRect.left + (tocRect.width / 2) - (backToTopBtn.offsetWidth / 2)) + 'px';
-      backToTopBtn.style.top = (tocRect.bottom + 10) + 'px';
+      // 按钮与 TOC 左侧对齐
+      backToTopBtn.style.left = tocRect.left + 'px';
     }
 
     function toggleBackToTopButton() {
@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       if (scrollTop > titleBottom) {
         backToTopBtn.classList.add('show');
+        updateButtonPosition();
       } else {
         backToTopBtn.classList.remove('show');
       }

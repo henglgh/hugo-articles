@@ -12,7 +12,7 @@
 --tableDarkcolor: rgba(171, 186, 191, 0.2);
 --titleDarkColor: #d3d5d7;
 --mainArticleSize: 60%;
---rightSideSize: 18%;
+--rightSideSize: 14%;
 --gMarginBottomSize: 12px;
 --scrollbarColor: rgba(102, 102, 102, 0.3) #ffffff;
 --scrollbarDarkColor: rgba(171, 186, 191, 0.2) #202124;
@@ -26,7 +26,7 @@
 
 html {
   color: var(--fontColor);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto Mono', monospace;
+  font-family: 'Roboto Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace;
   font-size: 15px;
   line-height: 1.6;
   overflow: hidden;
@@ -152,21 +152,27 @@ ul > li::before {
 /*--------------------表格配置（极简）---------------------*/
 table {
   margin-bottom: 0.8em;
-  border-collapse: collapse;
-  width: 100%;
+  border-collapse: separate;
   border-spacing: 0;
-  border-radius: 0;
+  width: 100%;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: none;
-}
-
-table, table th, table td {
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 table th, table td {
   padding: 6px 10px;
   text-align: left;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+table tr:last-child td {
+  border-bottom: none;
 }
 
 table th {
@@ -176,6 +182,8 @@ table th {
   text-transform: none;
   font-size: 14px;
   letter-spacing: 0;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 table tr:nth-child(even) {
@@ -183,7 +191,7 @@ table tr:nth-child(even) {
 }
 
 table tr:hover {
-  background-color: rgba(199, 37, 78, 0.02);
+  background-color: rgba(199, 37, 78, 0.04);
 }
 
 /* --------------------图片配置（极简）------------------- */

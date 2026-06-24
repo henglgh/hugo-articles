@@ -1,7 +1,27 @@
-# 1. hugo articles theme
-专用于个人博客网页主题，没有花里胡哨的功能，简约至上！
+# <p align="center">Hugo Articles Theme</p>
 
-## 1.1. 特点
+<p align="center">
+专用于个人知识笔记主题，没有花里胡哨的功能，简约至上！
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Hugo-Theme-orange" alt="Hugo Theme" />
+  <img src="https://img.shields.io/github/last-commit/henglgh/hugo-articles" alt="Last Commit" />
+  <a href="https://github.com/henglgh/hugo-articles">
+    <img src="https://img.shields.io/github/stars/henglgh/hugo-articles?style=social" alt="Stars" />
+  </a>
+  <a href="https://github.com/henglgh/hugo-articles/releases">
+    <img src="https://img.shields.io/github/v/release/henglgh/hugo-articles?label=release" alt="Release" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://henglgh.github.io/hugo-articles/">
+    <img src="https://img.shields.io/badge/GitHub%20Pages-hugo--articles-blue?logo=github" alt="GitHub Pages" />
+  </a>
+</p>
+
+## 特点
 - 支持亮/暗主题
 - 支持全局搜索（只允许搜索文章标题）
 - 支持katex数学公式语法
@@ -10,20 +30,8 @@
 - 不支持mermaid
 - 不支持shortcodes
 
-## 1.2. 截图
-### 1.2.1. 主页
-![主页](https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/home.png)
 
-### 1.2.3. 归档列表页
-![归档列表页](https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/archive.png)
-
-### 1.2.4. 文章页
-![文章页](https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/single.png)
-
-### 1.2.5. 搜索页
-![搜索页](https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/search.png)
-
-## 1.3. 安装
+## 使用教程
 clone自己的项目到本地并切换到项目的根目录，比如有一个blog项目：
 ```bash
 cd blog
@@ -59,12 +67,12 @@ theme="articles"
 
 最后执行`hugo server`运行，如果不出意外的话，应该能看到正常的渲染结果。
 
-## 1.4. 配置
+### 配置
 ```toml
 baseURL = 'https://henglgh.github.io/blog'
 languageCode = 'en-us'
 timeZone = "Asia/Shanghai"
-title = '阿根'
+title = '只是笔记'
 
 theme="articles"
 copyright = "© 阿根"
@@ -110,7 +118,7 @@ ignoreFiles = ["themes/.*/content/.*"]
   tag = 'tags'
 ```
 
-### 1.4.1. 配置说明
+### 配置说明
 - `baseURL`：githubpage主页的url。一定要注意最后有没有多一个`/`，因为多一个或者少一个`/`，对于hugo解析路径可能会出错。
 - `title`：网页的名字。
 - `params`：自定义hugo参数。

@@ -1,14 +1,26 @@
 /*-----------------主页配置----------------------*/
 
+.homeMain {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.homeArticle {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 .home-header {
   text-align: center;
-  padding: 3em 0 1.5em;
+  padding: 2em 0 1em;
+  flex-shrink: 0;
 }
 
 .site-title {
   font-size: 2.2rem;
   font-weight: 300;
-  margin-bottom: 0.8em;
   letter-spacing: 0.05em;
 }
 
@@ -17,7 +29,6 @@
   justify-content: center;
   align-items: center;
   gap: 16px;
-  margin-bottom: 1.5em;
 }
 
 .site-icons a {
@@ -46,7 +57,8 @@
 .search-line-container {
   position: relative;
   border-bottom: 2px solid #e8e8e8;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
+  flex-shrink: 0;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -94,6 +106,10 @@
 
 .tabs-container {
   margin-top: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   animation: fadeInUp 0.4s ease-out;
 }
@@ -205,6 +221,7 @@
 
 .tabs-wrapper {
   position: relative;
+  flex-shrink: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -352,8 +369,7 @@
 }
 
 .tabs-content {
-  min-height: 50vh;
-  max-height: 70vh;
+  flex: 1;
   padding-top: 0.8em;
   overflow-y: auto;
   position: relative;
@@ -373,20 +389,14 @@
 }
 
 .tabs-content::-webkit-scrollbar {
-  width: 6px;
+  display: none;
+  width: 0;
+  height: 0;
 }
 
-.tabs-content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.tabs-content::-webkit-scrollbar-thumb {
-  background: rgba(199, 37, 78, 0.2);
-  border-radius: 3px;
-}
-
-.tabs-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(199, 37, 78, 0.4);
+.tabs-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .tab-pane {

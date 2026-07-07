@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  const ITEMS_PER_PAGE = 10;
+  const ITEMS_PER_PAGE = 99999;
   let paginationStates = {};
 
   function initPagination(pane) {

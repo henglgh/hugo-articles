@@ -36,10 +36,6 @@ body{
   display: block;
   overflow: hidden;
   height: 100vh;
-  background-size: 24px 24px;
-  background-image:
-    linear-gradient(to right, rgba(199, 37, 78, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(199, 37, 78, 0.03) 1px, transparent 1px);
   background-color: #fafafa;
 }
 
@@ -53,7 +49,12 @@ body{
 
 ::selection {
   color: #fff;
-  background: linear-gradient(135deg, #c7254e, rebeccapurple);
+  background: #c7254e;
+}
+
+::-moz-selection {
+  color: #fff;
+  background: #c7254e;
 }
 
 p {

@@ -21,7 +21,7 @@
   </a>
 </p>
 
-![home](https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/merged.jpg)
+![home](https://raw.githubusercontent.com/henglgh/hugo-articles/refs/heads/main/images/merged.jpg)
 
 ## 特点
 - 支持亮/暗主题

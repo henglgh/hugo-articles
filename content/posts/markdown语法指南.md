@@ -209,10 +209,10 @@ ___这也是粗斜体文本___
 ```markdown
 ![图片描述](图片地址 "可选的标题")
 
-例如： ![home](https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/home.png "hugo-articles-home")
+例如： ![home](https://raw.githubusercontent.com/henglgh/hugo-articles/refs/heads/main/images/merged.jpg "hugo-articles-home")
 ```
 
-例如： ![home](https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/home.png "主页")
+例如： ![home](https://raw.githubusercontent.com/henglgh/hugo-articles/refs/heads/main/images/merged.jpg "主页")
 
 ## 7.2. 引用式图片
 
@@ -224,12 +224,12 @@ ___这也是粗斜体文本___
 例如：
 ![归档列表页][archive]
 
-[archive]: https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/archive.png "归档列表页"
+[archive]: https://raw.githubusercontent.com/henglgh/hugo-articles/refs/heads/main/images/merged.jpg "归档列表页"
 ```
 
 ![归档列表页][archive]
 
-[archive]: https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/archive.png "归档列表页"
+[archive]: https://raw.githubusercontent.com/henglgh/hugo-articles/refs/heads/main/images/merged.jpg "归档列表页"
 
 &nbsp;
 # 8. 代码

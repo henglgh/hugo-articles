@@ -21,6 +21,8 @@
   </a>
 </p>
 
+![home](https://raw.githubusercontent.com/henglgh/hugo-articles/main/images/merged.jpg)
+
 ## 特点
 - 支持亮/暗主题
 - 支持全局搜索（只允许搜索文章标题）

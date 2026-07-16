@@ -228,6 +228,7 @@ img:hover {
   margin-bottom: var(--gMarginBottomSize);
   height: 90vh;
   overflow-y: auto;
+  position: relative;
   display: flex;
   gap: 20px;
   justify-content: center;

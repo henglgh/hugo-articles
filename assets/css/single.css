@@ -97,6 +97,7 @@
 }
 
 .singleArticle .content h2 {
+  scroll-margin-top: 10px;
   font-size: 1.2rem;
   font-weight: 500;
   color: var(--fontColor);
@@ -112,11 +113,18 @@
 }
 
 .singleArticle .content h3 {
+  scroll-margin-top: 10px;
   font-size: 1.05rem;
   font-weight: 500;
   color: #555;
   margin-top: 1.2em;
   margin-bottom: 0.4em;
+}
+
+.singleArticle .content h4,
+.singleArticle .content h5,
+.singleArticle .content h6 {
+  scroll-margin-top: 10px;
 }
 
 .singleArticle .content p {
@@ -172,37 +180,10 @@
 
 .tocContainer li.expanded > ul {
   display: block;
-  animation: slideDown 0.3s ease;
 }
 
 .tocContainer li.collapsing > ul {
-  animation: slideUp 0.3s ease forwards;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-    max-height: 0;
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    max-height: 500px;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-    max-height: 500px;
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-10px);
-    max-height: 0;
-  }
+  display: none;
 }
 
 .tocContainer li {
@@ -214,7 +195,6 @@
   padding: 1px 6px;
   margin: 0;
   border-radius: 0;
-  transition: all 0.15s ease;
   cursor: pointer;
   position: relative;
 }
@@ -227,7 +207,6 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 10px;
-  transition: transform 0.3s ease, color 0.3s ease;
   color: #999;
 }
 
@@ -243,14 +222,12 @@
 
 .tocContainer li:hover {
   background: linear-gradient(90deg, rgba(199, 37, 78, 0.03), transparent);
-  transform: translateX(2px);
 }
 
 .tocContainer a {
   color: #555;
   text-decoration: none;
   display: block;
-  transition: color 0.15s ease;
   position: relative;
   padding-left: 18px;
   background: transparent;

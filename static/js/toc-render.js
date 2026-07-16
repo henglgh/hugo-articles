@@ -1,3 +1,6 @@
+// 手动滚动标志，阻止滚动观察器在 smooth scroll 期间干扰
+let isManualScrolling = false;
+
 // 防抖函数（避免滚动时频繁触发）
 function debounce(fn, delay = 100) {
   let timer = null;
@@ -66,6 +69,8 @@ function highlightTocItem(sectionId, tocItems) {
 // 交叉观察器处理（只用于高亮，不控制展开/收缩）
 function observerProcess(sections, tocItems) {
   const updateActiveToc = debounce(() => {
+    if (isManualScrolling) return;
+
     let topSection = null;
     let minOffset = Infinity;
 
@@ -131,25 +136,14 @@ function toggleTocItem(tocLink) {
     parentLi.classList.remove('expanded');
     parentLi.classList.add('collapsing');
     
-    // 添加收缩动画
-    childUl.style.animation = 'slideUp 0.3s ease forwards';
-    
-    // 动画结束后隐藏元素
-    setTimeout(() => {
-      childUl.style.display = 'none';
-      parentLi.classList.remove('collapsing');
-    }, 300);
+    childUl.style.display = 'none';
+    parentLi.classList.remove('collapsing');
     
     return true; // 表示已处理，阻止默认行为
   } else {
     // 当前是收缩的，执行展开
     parentLi.classList.add('expanded');
     childUl.style.display = 'block';
-    
-    // 添加展开动画效果
-    childUl.style.animation = 'none';
-    childUl.offsetHeight; // 触发重排
-    childUl.style.animation = 'slideDown 0.3s ease';
     
     return true; // 表示已处理，阻止默认行为
   }
@@ -173,18 +167,36 @@ function tocJump(tocItems) {
       e.preventDefault();
       const targetId = item.getAttribute('href').substring(1);
       const targetSection = document.getElementById(targetId);
-
       const scrollContainer = document.querySelector('.singleMain');
+
       if (scrollContainer && targetSection) {
+        isManualScrolling = true;
+
         scrollContainer.scrollTo({
           behavior: 'smooth',
-          top: targetSection.offsetTop - 80
+          top: targetSection.offsetTop - 10
         });
-        
-        // 跳转后高亮并展开到目标项
-        setTimeout(() => {
-          highlightTocItem(targetId, tocItems);
-        }, 300);
+
+        // 通过 requestAnimationFrame 轮询检测滚动是否真正结束
+        let prevScrollTop = scrollContainer.scrollTop;
+        let idleFrames = 0;
+
+        const pollScrollEnd = () => {
+          const cur = scrollContainer.scrollTop;
+          if (cur === prevScrollTop) {
+            idleFrames++;
+            if (idleFrames >= 3) {
+              isManualScrolling = false;
+              highlightTocItem(targetId, tocItems);
+              return;
+            }
+          } else {
+            idleFrames = 0;
+            prevScrollTop = cur;
+          }
+          requestAnimationFrame(pollScrollEnd);
+        };
+        requestAnimationFrame(pollScrollEnd);
       }
     });
   });
